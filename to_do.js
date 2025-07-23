@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const numbers = document.getElementById('numbers');
     const progress = document.getElementById('progress');
 
-    // 🔄 Load saved tasks from localStorage
+    
     const loadTasks = () => {
         const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
         tasklist.innerHTML = '';
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleemptystate();
     };
 
-    // 💾 Save tasks to localStorage
+    
     const saveTasks = () => {
         const tasks = Array.from(tasklist.children).map(li => {
             return {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     };
 
-    // 🔧 Create task <li> with event listeners
+    
     const createTaskElement = (text, completed = false) => {
         const li = document.createElement("li");
         li.innerHTML = `
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return li;
     };
 
-    // 📊 Update progress bar & stats
+    
     const updateProgress = () => {
         const totalTasks = tasklist.children.length;
         const completedTasks = Array.from(tasklist.children)
@@ -78,14 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
         progress.style.width = `${percentage}%`;
     };
 
-    // 📋 Toggle empty state UI
+    
     const toggleemptystate = () => {
         emptyimg.style.display = tasklist.children.length === 0 ? 'block' : 'none';
         todocont.style.width = tasklist.children.length > 0 ? '100%' : '50%';
         updateProgress();
     };
 
-    // ➕ Add new task
+    
     const addtask = (event) => {
         event.preventDefault();
         const tasktext = taskinput.value.trim();
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveTasks();
     };
 
-    // 🖱 Button and Enter key add
+    
     addtaskbtn.addEventListener("click", addtask);
     taskinput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
@@ -106,6 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ⏫ Load everything
+    
     loadTasks();
 });
